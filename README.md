@@ -31,7 +31,11 @@ ha változik a konfig, értesítést küld, egy szimpi queue-n keresztül... na 
 
 na ez kubernetesben nem kell.... ezt viszi a kubernetes
 
+Kulcson belül sorrendtartó. Azonos kulcsú elemek ugyanabba a topicba mennek.
 
 # Édekességek
 spring boot jdbc - immutable
 az új jpa- kigenerálja java kóddá, lesz stacktrace, és native fordítás
+
+Configuration annotációnál -> (proxyBeanMethods = false)
+gyorsabban indul a spring
