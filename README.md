@@ -33,9 +33,43 @@ na ez kubernetesben nem kell.... ezt viszi a kubernetes
 
 Kulcson belül sorrendtartó. Azonos kulcsú elemek ugyanabba a topicba mennek.
 
+Hint:
+egy microservice-nek legyen 3 topicja:
+- input topic: ide jönnek a kérések, amiket a service feldolgoz
+- output topic: ide kerülnek a válaszok, amiket a service a
+- event topic: ide kerülnek a service által generált események, amikre más service-ek feliratkozhatnak
+
+Kérdés-válasz összekapcsolása, headerben egy correlation id, amivel a válasz visszakereshető lesz.
+Ez egy egyszerű header paraméter.
+
+defaultból ha egy objektumot adunk át kaka-nak, nem lesz alapból json...
+ehhez kell egy serializer, ami json-t csinál belőle, és egy deserializer, ami visszaalakítja a json-t objektummá.
+kafka.producer.value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+a consumer dettó
+
+ha a json lassú, akkor a bináris avro a jó, kafka default támogatja..
+
+IDEA pliugin= confluent :D
+Ha olvasni akarok, akkor egy consumert kell létrehozni
+
+Microservice eseén kódmegosztás antipattern.. contract... azaz jsonschema alapján
+közös kód interfész esetén nem szabad
+
+Van egy biztonsági rés:
+consumer.properties:
+    spring.json.trusted.packages: 'employees'
+
+# 2. nap
+## Spring Boot Stream
+EDA támogatás, magasabb absztrakciós szint, mint a sima kafka client
+fejesztési elv - egyetlen egy metódus, amit ad, a többi létező, pl: funkcionális interfészek
+
+
+
 # Édekességek
 spring boot jdbc - immutable
 az új jpa- kigenerálja java kóddá, lesz stacktrace, és native fordítás
 
 Configuration annotációnál -> (proxyBeanMethods = false)
 gyorsabban indul a spring
+
