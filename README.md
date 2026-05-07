@@ -64,6 +64,12 @@ consumer.properties:
 EDA támogatás, magasabb absztrakciós szint, mint a sima kafka client
 fejesztési elv - egyetlen egy metódus, amit ad, a többi létező, pl: funkcionális interfészek
 
+https://spring.io/projects/spring-cloud-stream
+itt található sok binder, pl a kafkás is
+
+avro formátumra átállítjuk, nyelvfüggetlen, bináris
+
+### resilience4j - circuit breaker
 
 
 # Édekességek
@@ -73,3 +79,17 @@ az új jpa- kigenerálja java kóddá, lesz stacktrace, és native fordítás
 Configuration annotációnál -> (proxyBeanMethods = false)
 gyorsabban indul a spring
 
+contract first approach: json schema alapján generálunk kódot, ez elterjedt
+schema registry - springben is van ilyen pl, egy leírót, contractot le tudjuk kérni
+
+chaos monkey- lekapcsolja a hálózati elemeket, és monitorozni lehet, hogy mikor, mennyi idő alatt
+áll helyre, önjavító
+
+van ilyen springre is, chaos monkey for spring
+post üzenetekkel be tudom kapcsolni a hibákat
+
+spring boot admin - alkalmazásokat monitorozgat, actuatoron keresztül minent elér, konfigok elérhetők, spring cuccok, log level állítgatás
+
+backend for frontend - van 100 microservice, és a web kliens.. na a kliensemet nem ersztem rá mind a 100 rendszerre, hanem kapnak egy külön backendet, na majd a beszélgessen a 100 servicemmel
+na meg más kell a web-nek meg a mobilnak, ezért külön backend for frontend van
+ezt meg a frontendes node-ban megírja
