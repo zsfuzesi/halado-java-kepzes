@@ -71,6 +71,37 @@ avro formátumra átállítjuk, nyelvfüggetlen, bináris
 
 ### resilience4j - circuit breaker
 
+# 3. nap
+## Spring security
+auth server - tokeneket ad, sso szerver, login itt van megvalósítva
+resource server - ő a kiszolgáló
+client - ez a resource serverhez fordul, hogy hozzáférést kérjen
+
+Folyamat: keycloak-on bejelentkezel, generál egy auth code-ot , redirectál a
+a kliensre aki beváltja a code-ot egy JWT-re.
+client:
+- mobil -> webview
+- SPA (azaz webes alkalmazás) 
+
+
+resource server: a tokent ellenőrzi, lekéri a publikus kulcsot, és ellenőrzi a signature-t
+itt az a lényeg, letölti a publikus kulcsot, és ellenőrzi a signature-t, hogy a token valóban a auth servertől származik-e
+érdemes cache-elni 
+
+Mivel az OAUTH2 elég hiányos, 
+OpenID connect - OAUTH2 kiegészítés, ami megoldja a user info lekérését, és a session kezelését
+pl: access token lejárata legyen rövid
+és van egy refresh token, aminek sokkal hosszabb a lejárata
+single sign out -> azinnali kilépés, az auth server értesíti a klienst, hogy a user kilépett
+
+### JWT
+json web token, egy string, ami három részre van osztva: header, payload, signature
+claim - egy darab adat, amit a tokenben tárolunk, pl: user id, role, stb. de vannak sajátok is
+
+
+
+
+
 
 # Édekességek
 spring boot jdbc - immutable
